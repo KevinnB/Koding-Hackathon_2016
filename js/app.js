@@ -3,9 +3,3 @@ var app = angular.module('socialMediaQuery',
    'ui.bootstrap',
    'ui.router',
 ]);
-
-
-app.run(['$rootScope', function ($rootScope) {
-  console.log("Running now")
-  
-}]);

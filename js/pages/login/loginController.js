@@ -1,13 +1,18 @@
-app.controller('LoginController', ['$scope', function($scope) {
-    $scope.master = {};
+app.controller('LoginController', ['$scope', '$rootScope',
+function($scope, $rootScope) {
+  console.log("login controller");
+    $scope.user = $rootScope.authetication.user;
+    $scope.platforms = [
+      {id: 1, name: 'Instagram', icon:'fa-instagram'},
+      {id: 2, name: 'FaceBook', icon:'fa-facebook-official'},
+      {id: 3, name: 'Twitter', icon:'fa-twitter'}
+    ];
 
-    $scope.update = function(user) {
-      $scope.master = angular.copy(user);
+    $scope.updatePlatform = function (id) {
+      $scope.user.platform = id;
     };
 
-    $scope.reset = function() {
-      $scope.user = angular.copy($scope.master);
+    $scope.login = function () {
+      $rootScope.authetication.login();
     };
-
-    $scope.reset();
   }]);
