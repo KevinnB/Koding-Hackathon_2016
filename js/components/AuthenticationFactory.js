@@ -1,5 +1,5 @@
-app.factory('AuthenticationFactory', ['$rootScope', '$state', 'ngStorage', '$http', '$auth',
-function($rootScope, $state, ngStorage, $http, $auth) {
+app.factory('AuthenticationFactory', ['$rootScope', '$state', '$sessionStorage', '$http', '$auth',
+function($rootScope, $state, $sessionStorage, $http, $auth) {
   var factory = {};
     var twitterAPI = "api.twitter.com",
         instagramAPI = "api.instagram.com",
@@ -9,7 +9,8 @@ function($rootScope, $state, ngStorage, $http, $auth) {
     factory.login = function () {
       console.log("Login");
         $auth.authenticate(factory.user.platform).then(function() {
-          console.log("Login Success", ngStorage);
+          $sessionStorage[factory.user.platform] =
+          console.log("Login Success", $auth);
           $state.go("default");
         })
         .catch(function(error) {
