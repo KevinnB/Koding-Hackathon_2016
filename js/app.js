@@ -13,11 +13,11 @@ app.config(function($authProvider) {
     });
 
     $authProvider.instagram({
-      clientId: 'Instagram Client ID'
+      clientId: 'f4a19318a6d3485ab78e950e9d05a5ce'
     });
 
     $authProvider.twitter({
-      clientId: 'Twitter Client ID'
+      clientId: 'xf9DQgMTBNVYbr6NgFT0SQAUQ'
     });
 
     // No additional setup required for Twitter

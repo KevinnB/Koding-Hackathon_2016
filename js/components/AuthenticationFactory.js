@@ -1,5 +1,5 @@
-app.factory('AuthenticationFactory', ['$rootScope', '$http', '$auth',
-function($rootScope, $http, $auth) {
+app.factory('AuthenticationFactory', ['$rootScope', '$state', 'ngStorage', '$http', '$auth',
+function($rootScope, $state, ngStorage, $http, $auth) {
   var factory = {};
     var twitterAPI = "api.twitter.com",
         instagramAPI = "api.instagram.com",
@@ -8,7 +8,21 @@ function($rootScope, $http, $auth) {
 
     factory.login = function () {
       console.log("Login");
-        $auth.authenticate(factory.user.platform);
+        $auth.authenticate(factory.user.platform).then(function() {
+          console.log("Login Success", ngStorage);
+          $state.go("default");
+        })
+        .catch(function(error) {
+          if (error.error) {
+            // Popup error - invalid redirect_uri, pressed cancel button, etc.
+            toastr.error(error.error);
+          } else if (error.data) {
+            // HTTP response error from server
+            toastr.error(error.data.message, error.status);
+          } else {
+            toastr.error(error);
+          }
+        });;
     };
     factory.logout = function () {
 
