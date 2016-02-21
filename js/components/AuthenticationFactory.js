@@ -8,10 +8,10 @@ function($rootScope, $localStorage) {
 
     factory.login = function () {
       console.log("Login");
-      
+
     };
     factory.logout = function () {
-
+      
 
     };
     factory.user = {
