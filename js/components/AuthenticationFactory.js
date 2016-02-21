@@ -16,12 +16,12 @@ function($rootScope, $state, $sessionStorage, $http, $auth) {
         .catch(function(error) {
           if (error.error) {
             // Popup error - invalid redirect_uri, pressed cancel button, etc.
-            toastr.error(error.error);
+            console.error(error.error);
           } else if (error.data) {
             // HTTP response error from server
-            toastr.error(error.data.message, error.status);
+            console.error(error.data.message, error.status);
           } else {
-            toastr.error(error);
+            console.error(error);
           }
         });;
     };
