@@ -1,5 +1,5 @@
-app.factory('AuthenticationFactory', ['$rootScope', '$localStorage',
-function($rootScope, $localStorage) {
+app.factory('AuthenticationFactory', ['$rootScope', '$http', '$auth',
+function($rootScope, $http, $auth) {
   var factory = {};
     var twitterAPI = "api.twitter.com",
         instagramAPI = "api.instagram.com",
@@ -8,10 +8,9 @@ function($rootScope, $localStorage) {
 
     factory.login = function () {
       console.log("Login");
-
+        $auth.authenticate(factory.user.platform);
     };
     factory.logout = function () {
-      
 
     };
     factory.user = {
